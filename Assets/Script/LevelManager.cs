@@ -9,6 +9,9 @@ public class LevelManager : MonoBehaviour {
 
 	public GameObject pauseMenu;
 
+	public Transform respawnPoint;
+	private GameObject player;
+
 	private float startTime;
 	public float silverTime;
 	public float goldTime;
@@ -17,6 +20,16 @@ public class LevelManager : MonoBehaviour {
 		instance = this;
 		pauseMenu.SetActive (false);
 		startTime = Time.time;
+		player = GameObject.FindGameObjectWithTag ("Player");
+		player.transform.position = respawnPoint.position;
+	}
+
+	void Update () {
+
+		if (player.transform.position.y < -30) {
+			Death ();
+		}
+
 	}
 
 	public void TogglePauseMenu() {
@@ -27,11 +40,14 @@ public class LevelManager : MonoBehaviour {
 		SceneManager.LoadScene ("Main Menu");
 	}
 
-	void Update () {
-		
+	public void Death(){
+		player.transform.position = respawnPoint.position;
+		Rigidbody rigbod = player.GetComponent<Rigidbody> ();
+		rigbod.angularVelocity = Vector3.zero;
+		rigbod.velocity = Vector3.zero;
 	}
 
-	public void Victory() {
+	public void Victory() 	{
 		float duration = Time.time - startTime;
 		if (duration < goldTime) {
 			GameManager.Instance.currency += 50;
