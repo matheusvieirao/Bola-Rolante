@@ -50,8 +50,8 @@ public class Motor : MonoBehaviour {
 
 	public void Turbo() {
 		if (Time.time - lastTurbo > turboCooldown) {
-			controller.AddForce (controller.velocity.normalized * turboSpeed, ForceMode.Impulse);
 			lastTurbo = Time.time;
+			controller.AddForce (controller.velocity.normalized * turboSpeed, ForceMode.Impulse);
 		}
 	}
 }

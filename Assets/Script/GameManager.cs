@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
 
 	public int currentSkinIndex = 0;
 	public int currency = 0;
-	public int skinAvailability = 1; //se 1 só a primeira ta disponivel, se 2 só a segunda, se 7 as tres primeiras...
+	public int skinAvailability = 1; //se 1 só a primeira ta disponivel, se 2 só a segunda, se 3 a primeira e a segunda, se 7 as tres primeiras...
 
 	private void Awake() {
 		instance = this;
